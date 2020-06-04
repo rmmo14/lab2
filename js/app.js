@@ -2,12 +2,14 @@
 
 // The program will have 3 yes/ questions: as a cf student do I live in WA? do I know another language aside from English? Do I enjoy the cold?
 var myState = prompt('As a CodeFellows student, do I live in Washington?');
-if (myState === 'no' || myState === 'No' || myState === 'N' || myState === 'n') {
+var myStateCase = myState.toLowerCase();
+
+if (myStateCase === 'no' || myStateCase === 'n') {
   alert('You got it! I\'m coming at you from CA!');
 } else {
   alert('Nope, I am attending remotely from CA');
 }
-console.log('I am from CA, you said ' + myState);
+console.log('I am from CA, you said: ' + myState);
 
 var whatSpeak = prompt('Does the developer speak a language other than English?');
 var whatSpeakRecase = whatSpeak.toLowerCase();
@@ -30,7 +32,7 @@ if (myTempCase === 'yes' || myTempCase === 'y') {
 } else {
   whatSpeak = prompt('Please type yes or no');
 }
-console.log('I hate the cold, you said ' + myTemp);
+console.log('I hate the cold, you said: ' + myTemp);
 // the other questions will be multiple choice: I majored in a STEM subject, quess which one. Based on the previous question, did I receive a bachelors, masters, both, or neither?
 var myMajor = prompt('I majored in a STEM subject, which do you think?');
 var myMajorCase = myMajor.toLowerCase();
@@ -67,38 +69,40 @@ var userName = prompt('what is your name?');
 while (userName === '' || userName === null) {
   userName = prompt('Please input a character for your name or else!');
 }
-alert('Welcome to my page ' + userName + ' , I hope you enjoy this page :)');
+alert('Welcome ' + userName + ' , I hope you enjoy this page :)');
 
 
 //This code will add a 6th question where the user has to keep guessing a number to guess if it is wrong or not. It should give them only 4 tries, tells them if they are close to the number, once attempts are exhausted it should show the correct answer.
 
 var guessNumber = prompt('In mathematics a prime number is divisible by one and itself ONLY, which is the FOURTH prime number? You will have four tries to guess correctly.');
 var i = 0;
-var guessMe = parseInt(guessNumber);
 
-while (i < 3) {
-  if (guessMe === 7) {
+while (i < 3){
+  var guessMe = parseInt(guessNumber);
+  if (guessMe === 7){
     i = 3;
-  } else if (guessMe > 50) {
-    guessMe = prompt('Way too high, you have ' + (3 - i) + 'attempts left.');
+    alert('Correct!');
+  } else if (guessMe > 50){
+    guessNumber = prompt('Way too high, you have ' + (3-i) + ' attempts left.');
     i++;
   } else if (guessMe > 20 && guessMe <= 50) {
-    guessMe = prompt('Too high, you have ' + (3 - i) + ' attempts left.');
+    guessNumber = prompt('Too high, you have ' + (3-i) + ' attempts left.');
     i++;
   } else if (guessMe > 10 && guessMe <= 20) {
-    guessMe = prompt('A little too high, you have ' + (3 - i) + ' attempts left.');
+    guessNumber = prompt('A little too high, you have ' + (3-i) + ' attempts left.');
     i++;
-  } else if (guessMe <= 10 && guessMe > 7) {
-    guessMe = prompt('Just a smidge too high, you have ' + (3 - i) + 'attempts left.');
+  } else if (guessMe <= 10 && guessMe > 7){
+    guessNumber = prompt('Just a smidge too high, you have ' + (3-i) + ' attempts left.');
     i++;
-  } else if (guessMe < 5 && guessMe >= 0) {
-    guessMe = prompt('Too low, go a slight bit higher. You have ' + (3 - i) + ' attempts left.');
+  }
+  else if (guessMe < 5 && guessMe >= 0) {
+    guessNumber = prompt('Too low, go a slight bit higher. You have ' + (3-i) + ' attempts left.');
     i++;
-  } else if (guessMe >= 5 && guessMe < 7) {
-    guessMe = prompt('Close, go a tad bit higher. You have ' + + (3 - i) + ' attempts left.');
+  } else if (guessMe >= 5 && guessMe < 7){
+    guessNumber = prompt('Close, go a tad bit higher. You have ' + + (3-i) + ' attempts left.');
     i++;
   } else {
-    guessMe = prompt('Please input a NUMBER you believe is the fourth prime number! You have ' + (3 - i) + ' attempts left.')
+    guessNumber = prompt('Please input a NUMBER you believe is the fourth prime number! You have ' + (3-i) + ' attempts left.')
     i++;
   }
 }
@@ -114,21 +118,43 @@ var j = 0;
 var correctAnswers = ['1', '2', '4'];
 
 while (j < 6) {
-  switch (yourResponse){
-  case correctAnswers[0]:
-  case correctAnswers[1]:
-  case correctAnswers[2]:
-    yourResponse = alert('Correct! That is one of them.');
-    j = 6;
-    break;
-  default:
-    yourResponse = prompt('Not exactly, try again. Be sure to pick a number 1-8 for 1) "Rick and Morty" 2) "Parks and Rec" 3) "Botched" 4) "RuPaul\'s Drag Race" 5) "Home Improvement" 6) "KUWTK" 7) "24" 8) "Survivor". You have ' + (6-j) + ' attempts left.')
-    j++;
-    break;
+  console.log('Your guess at my favorite shows: ' + yourResponse);
+  switch (yourResponse) {
+    case correctAnswers[0]:
+    case correctAnswers[1]:
+    case correctAnswers[2]:
+      alert('Correct! That is one of them.');
+      j = 6;
+      break;
+    default:
+      yourResponse = prompt('Not exactly, try again. Be sure to pick a number 1-8 for 1) "Rick and Morty" 2) "Parks and Rec" 3) "Botched" 4) "RuPaul\'s Drag Race" 5) "Home Improvement" 6) "KUWTK" 7) "24" 8) "Survivor". You have ' + (6 - j) + ' attempts left.')
+      j++;
+      break;
   }
 }
 //at the moment this code does not alert correct if they get it on the last attempt
 alert('The three shows are 1) "Rick and Morty 2) "Parks and Rec" and 4) RuPaul\'s Drag Race');
 
 
+//This code will count the number of correct responses from the user and give them a score. 
+
+var userResponses = [myStateCase, whatSpeakRecase, myTempCase, myMajorCase, myEducationCase, guessNumber, yourResponse];
+var trueAnswers = ['no', 'yes', 'no', 'math', 'both','7', '4'];
+var countMe = 0;
+
+//at the moment, this code does not check for different variations of yes no or math
+for (var i = 0; i < 7; i++){
+  if (userResponses[i] === trueAnswers[i]){
+    countMe++;
+  } else {
+    countMe = 0 + countMe;
+  }
+}
+var totalScore = parseInt(countMe);
+console.log('Your total was: ' + totalScore + ' out of 7 points.');
+
+alert(userName + '\'s responses were ' + userResponses + '. You scored ' + totalScore + ' out of 7 points.');
+console.log(userName + ' responses were: ' + userResponses + '.');
+alert('Correct answers are ' + trueAnswers +'!');
+console.log('Correct answers are: ' + trueAnswers +'!');
 
