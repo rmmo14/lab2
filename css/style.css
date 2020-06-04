@@ -8,7 +8,7 @@ nav {
 }
 
 
-li {
+body > header > nav > ul > li {
   display: inline-block;
   width: 250px; 
   text-align: center;

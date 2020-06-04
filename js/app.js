@@ -1,8 +1,8 @@
 'use strict';
 
 // The program will have 3 yes/ questions: as a cf student do I live in WA? do I know another language aside from English? Do I enjoy the cold?
-var myState = prompt('As a CodeFellows student, do I live in Washington?' );
-if (myState === 'no'||myState === 'No' || myState === 'N' || myState === 'n'){
+var myState = prompt('As a CodeFellows student, do I live in Washington?');
+if (myState === 'no' || myState === 'No' || myState === 'N' || myState === 'n') {
   alert('You got it! I\'m coming at you from CA!');
 } else {
   alert('Nope, I am attending remotely from CA');
@@ -11,7 +11,7 @@ console.log('I am from CA, you said ' + myState);
 
 var whatSpeak = prompt('Does the developer speak a language other than English?');
 var whatSpeakRecase = whatSpeak.toLowerCase();
-if (whatSpeakRecase === 'yes' || whatSpeakRecase === 'y'){
+if (whatSpeakRecase === 'yes' || whatSpeakRecase === 'y') {
   alert('Correct, I can speak two others. Read my page!');
 } else if (whatSpeakRecase === 'no' || whatSpeakRecase === 'n') {
   alert('Not exactly. Check my "About Me" , I can speak two other languages.');
@@ -64,7 +64,71 @@ console.log('I have a BA and MA, you said: ' + myEducation);
 //now for the personalization. The code will ask the user their name and display a message to them
 
 var userName = prompt('what is your name?');
-while (userName ===''|| userName === null){
+while (userName === '' || userName === null) {
   userName = prompt('Please input a character for your name or else!');
 }
 alert('Welcome to my page ' + userName + ' , I hope you enjoy this page :)');
+
+
+//This code will add a 6th question where the user has to keep guessing a number to guess if it is wrong or not. It should give them only 4 tries, tells them if they are close to the number, once attempts are exhausted it should show the correct answer.
+
+var guessNumber = prompt('In mathematics a prime number is divisible by one and itself ONLY, which is the FOURTH prime number? You will have four tries to guess correctly.');
+var i = 0;
+var guessMe = parseInt(guessNumber);
+
+while (i < 3) {
+  if (guessMe === 7) {
+    i = 3;
+  } else if (guessMe > 50) {
+    guessMe = prompt('Way too high, you have ' + (3 - i) + 'attempts left.');
+    i++;
+  } else if (guessMe > 20 && guessMe <= 50) {
+    guessMe = prompt('Too high, you have ' + (3 - i) + ' attempts left.');
+    i++;
+  } else if (guessMe > 10 && guessMe <= 20) {
+    guessMe = prompt('A little too high, you have ' + (3 - i) + ' attempts left.');
+    i++;
+  } else if (guessMe <= 10 && guessMe > 7) {
+    guessMe = prompt('Just a smidge too high, you have ' + (3 - i) + 'attempts left.');
+    i++;
+  } else if (guessMe < 5 && guessMe >= 0) {
+    guessMe = prompt('Too low, go a slight bit higher. You have ' + (3 - i) + ' attempts left.');
+    i++;
+  } else if (guessMe >= 5 && guessMe < 7) {
+    guessMe = prompt('Close, go a tad bit higher. You have ' + + (3 - i) + ' attempts left.');
+    i++;
+  } else {
+    guessMe = prompt('Please input a NUMBER you believe is the fourth prime number! You have ' + (3 - i) + ' attempts left.')
+    i++;
+  }
+}
+//at the moment this code does not alert correct if they get it on the last attempt
+alert('The first four prime numbers 2, 3, 5, and 7.');
+
+
+
+//This code will ask another question that has multiple correct answers stored in an array. They get 6 attempts to guess correctly, the program ends once they guess correctly or they run out of attemtps. Show all the correct answers.
+
+var yourResponse = prompt('I like 3 of the following 8 shows, input your guess by selecting it\'s appropriate number: 1) "Rick and Morty" 2) "Parks and Rec" 3) "Botched" 4) "RuPaul\'s Drag Race" 5) "Home Improvement" 6) "KUWTK" 7) "24" 8) "Survivor"');
+var j = 0;
+var correctAnswers = ['1', '2', '4'];
+
+while (j < 6) {
+  switch (yourResponse){
+  case correctAnswers[0]:
+  case correctAnswers[1]:
+  case correctAnswers[2]:
+    yourResponse = alert('Correct! That is one of them.');
+    j = 6;
+    break;
+  default:
+    yourResponse = prompt('Not exactly, try again. Be sure to pick a number 1-8 for 1) "Rick and Morty" 2) "Parks and Rec" 3) "Botched" 4) "RuPaul\'s Drag Race" 5) "Home Improvement" 6) "KUWTK" 7) "24" 8) "Survivor". You have ' + (6-j) + ' attempts left.')
+    j++;
+    break;
+  }
+}
+//at the moment this code does not alert correct if they get it on the last attempt
+alert('The three shows are 1) "Rick and Morty 2) "Parks and Rec" and 4) RuPaul\'s Drag Race');
+
+
+
