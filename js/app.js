@@ -161,7 +161,7 @@ function myShows() {
     }
   }
   //at the moment this code does not alert correct if they get it on the last attempt
-  alert('The three shows are 1) "Rick and Morty 2) "Parks and Rec" and 4) RuPaul\'s Drag Race');
+  alert('The three shows are 1) "Rick and Morty 2) "Parks and Rec" and 4) "RuPaul\'s Drag Race"');
 }
 myShows();
 
